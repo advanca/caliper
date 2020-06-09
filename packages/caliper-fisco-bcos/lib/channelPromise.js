@@ -215,7 +215,7 @@ function channelPromise(node, authentication, data, timeout, readOnly = false) {
 
     tlsSocket.socketID = uuid;
     let packagedData = dataPackage.packagedData;
-    let channelPromise = new Promise(async (resolve, reject) => {
+    let channelPromise = new Promise((resolve, reject) => {
         let eventEmitter = new events.EventEmitter();
         Object.defineProperty(eventEmitter, 'readOnly', {
             value: readOnly,

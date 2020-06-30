@@ -1,7 +1,7 @@
 {
     "name": "caliper-publish",
     "description": "Hyperledger Caliper internal CLI for publishing packages",
-    "version": "0.3.2",
+    "version": "0.3.2-advanca.1",
     "private": true,
     "repository": {
         "type": "git",
@@ -26,13 +26,13 @@
     "devDependencies": {
         "chai": "^3.5.0",
         "eslint": "^5.16.0",
+        "license-check-and-add": "2.3.6",
         "mocha": "3.4.2",
         "nyc": "11.1.0",
+        "pm2": "2.10.1",
         "rewire": "^4.0.0",
         "sinon": "^7.3.2",
-        "pm2": "2.10.1",
-        "verdaccio": "3.12.0",
-        "license-check-and-add": "2.3.6"
+        "verdaccio": "3.12.0"
     },
     "license-check-and-add-config": {
         "folder": ".",

@@ -190,12 +190,15 @@ class RoundOrchestrator {
 
                 // Build the report
                 // - TPS
-                let idx;
-                if (this.monitorOrchestrator.hasMonitor('prometheus')) {
-                    idx = await this.report.processPrometheusTPSResults({start, end}, roundConfig, index);
-                } else {
-                    idx = await this.report.processLocalTPSResults(results, roundConfig);
-                }
+                // FIXME(advanca): directly use local tps results as the prometheus monitor result is inaccurate
+                // See https://github.com/hyperledger/caliper/issues/826
+                let idx = await this.report.processLocalTPSResults(results, roundConfig);
+
+                // if (this.monitorOrchestrator.hasMonitor('prometheus')) {
+                //     idx = await this.report.processPrometheusTPSResults({start, end}, roundConfig, index);
+                // } else {
+                //     idx = await this.report.processLocalTPSResults(results, roundConfig);
+                // }
 
                 // - Resource utilization
                 await this.report.buildRoundResourceStatistics(idx, roundConfig.label);
@@ -210,7 +213,7 @@ class RoundOrchestrator {
                     await this.monitorOrchestrator.restartAllMonitors();
                 }
             } catch (err) {
-                await this.testObserver.stopWatch();
+                // await this.testObserver.stopWatch();
                 failed++;
                 logger.error(`Failed round ${index + 1} (${roundConfig.label}): ${err.stack || err}`);
             }

@@ -39,5 +39,8 @@ ENV PATH /home/node/.npm-global/bin:$PATH
 ENV CALIPER_WORKSPACE /hyperledger/caliper/workspace
 ENV CALIPER_BIND_ARGS -g
 
+# FIXME: should remove this before contributing back to upstream
+RUN caliper bind --caliper-bind-sut fisco-bcos:latest && npm install -g request uuid@3.3.2 chalk
+
 ENTRYPOINT ["caliper"]
 CMD ["--version"]
